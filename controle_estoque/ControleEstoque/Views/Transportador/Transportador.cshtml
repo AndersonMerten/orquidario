@@ -1,0 +1,68 @@
+﻿@model List<ControleEstoque.Models.Transportador>
+
+@{
+      ViewBag.Title = "Transportadora";
+}
+@if (!Model.Any())
+{
+    <p> Não temos Transportador cadastrado ainda! </p>
+    <a href=@Url.Action("New", "Transportador") class="btn btn-info pull-lefts">
+        <i></i>&nbsp;Nova Transportadora
+    </a>
+
+}
+else
+{
+    <table class="table table-hover">
+        <h1>Transportadoras</h1>
+        <header>
+            <h3>
+                <a href=@Url.Action("New", "Transportador") class="btn btn-info pull-lefts">
+                    <i></i>&nbsp;Nova Transportadora
+                </a>
+            </h3>
+        </header>
+        <thead> <tr><th>Logo</th><th>Nome</th><th>Telefone</th><th>Regiões Atendidas</th><th>Editar</th><th>Deletar</th></tr></thead>
+        <tbody>
+
+            @foreach (var Transportador in Model)
+            {
+                <tr>
+                    <td>
+                        <img src=@Transportador.Logo alt="" border=3 height=80px width=80px></img>
+
+                    </td>
+
+                    <td>
+                        @Html.ActionLink(Transportador.Nome, "Detalhe",
+                        new { Transportador.Id },
+                        new { @class = "link" })
+                    </td>
+                    <td>
+                        @Transportador.Fone
+                    </td>
+                   <td>
+                       @Transportador.RegioesAtendidas
+                   </td>
+                    <td>
+                        @Html.ActionLink(
+                    linkText: " Editar Transportadora",
+                    actionName: "Edit",
+                    routeValues: new { Transportador.Id }, // or to pass some value -> routeValues: new { id = 1 },
+                    htmlAttributes: new { @class = "btn btn-info " }
+                    )
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Transportador", new { Transportador.Id }))
+                        {
+
+                            <button type="submit" class="btn btn-danger">Deletar Transportadora</button>
+
+                        }
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}

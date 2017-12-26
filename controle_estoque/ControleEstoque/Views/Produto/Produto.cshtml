@@ -1,0 +1,73 @@
+﻿@model List<ControleEstoque.Models.Produto>
+
+@{
+      ViewBag.Title = "Produto";
+}
+@if (!Model.Any())
+{
+    <p> Não temos Produtos cadastrados ainda! </p>
+    <a href=@Url.Action("New", "Produto") class="btn btn-info pull-lefts">
+        <i></i>&nbsp;Novo Produto
+    </a>
+}
+else
+{
+    <table class="table table-hover">
+        <h1>Produtos</h1>
+        <header>
+            <h3>
+                <a href=@Url.Action("New", "Produto") class="btn btn-info pull-lefts">
+                    <i></i>&nbsp;Novo Produto
+                </a>
+            </h3>
+        </header>
+        <thead> <tr><th>Foto</th><th>Nome</th><th>Descrição</th><th>Preço</th><th>Estoque</th><th>Editar</th><th>Deletar</th></tr></thead>
+        <tbody>
+
+            @foreach (var produto in Model)
+            {
+                <tr>
+                    <td>
+                        <img src=@produto.Foto alt="" border=3 height=80px width=80px></img>
+
+                    </td>
+
+                    <td>
+                        @Html.ActionLink(produto.Nome, "Detalhe",
+                        new { produto.Id },
+                        new { @class = "link" })
+                    </td>
+                    <td>
+                        @produto.Descricao
+                    </td>
+                    <td>
+                        @produto.Preco
+                    </td>
+                    <td>
+                        @produto.Estoque
+                    </td>
+                    <td>
+                        @Html.ActionLink(
+                    linkText: " Editar Produto",
+                    actionName: "Edit",
+                    routeValues: new { produto.Id }, // or to pass some value -> routeValues: new { id = 1 },
+                    htmlAttributes: new { @class = "btn btn-info " }
+                    )
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Produto", new { produto.Id }))
+                        {
+
+                            <button type="submit" class="btn btn-danger">Deletar Produto</button>
+
+                        }
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+

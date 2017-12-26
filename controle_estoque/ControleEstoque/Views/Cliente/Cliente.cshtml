@@ -1,0 +1,74 @@
+﻿@model List<ControleEstoque.Models.Cliente>
+
+@{
+    ViewBag.Title = "Cliente";
+}
+@if(!Model.Any()){
+    <p> Não temos clientes cadastrados ainda! </p>
+    <a href=@Url.Action("New", "Cliente") class="btn btn-info pull-lefts">
+        <i></i>&nbsp;Novo Cliente
+    </a>
+}
+else
+{
+    <table class="table table-hover"> 
+        <h1>Clientes</h1>
+        <header>
+            <h3>
+                <a href=@Url.Action("New", "Cliente") class="btn btn-info pull-lefts">
+                    <i></i>&nbsp;Novo Cliente
+                </a>
+            </h3>
+        </header>
+        <thead> <tr><th>Imagem</th><th>Nome</th><th>Telefone</th><th>CPF</th><th>Email</th><th>Nascimento</th><th>Editar</th><th>Deletar</th></tr></thead>
+        <tbody>
+
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>
+                        <img src=@cliente.Imagem alt="" border=3 height=80px width=80px></img>
+                       
+                    </td>
+                   
+                    <td>
+                        @Html.ActionLink(cliente.Nome, "Detalhe",
+                        new { cliente.Id },
+                        new {@class = "link"})
+                    </td>
+                    <td>
+                        @cliente.Fone
+                    </td>
+                    <td>
+                        @cliente.Cpf
+                    </td>
+                    <td>
+                        @cliente.Email
+                    </td>
+                    <td>
+                        @cliente.Nascimento.Value.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                       @Html.ActionLink(
+                    linkText: " Editar Cliente",
+                    actionName: "Edit",
+                    routeValues: new { cliente.Id }, // or to pass some value -> routeValues: new { id = 1 },
+                    htmlAttributes: new { @class = "btn btn-info " }
+                    )
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Cliente", new { cliente.Id })) {
+                       
+                            <button type="submit" class="btn btn-danger">Deletar Cliente</button>
+ 
+                        }
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+

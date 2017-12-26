@@ -1,0 +1,63 @@
+﻿@model ControleEstoque.ViewModels.PedidoFormViewModel
+@{
+      ViewBag.Title = Model.Title;
+      Layout = "~/Views/Shared/_Layout.cshtml";
+      var classeHidden = "";
+}
+<div class="panel panel-info">
+    @if (Model.Pedido.Id == 0) 
+    {
+        classeHidden = "hidden";
+        <div class="panel-heading">@ViewBag.Title</div>
+    }
+    else
+    {
+        <div class="panel-heading">Editando pedido número @Model.Pedido.Id</div>
+    }
+    <div class="panel-body">
+        
+        <div class="col-lg-6 teste">
+            @using (Html.BeginForm("Save", "Pedido", FormMethod.Post, new { id = "editaPedido" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Pedido.Id)
+                <div class="form-group hidden">
+                    @Html.LabelFor(m => m.Pedido.Id)
+                    @Html.TextBoxFor(m => m.Pedido.Id, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>Nome do Cliente</label>
+                    @Html.DropDownListFor(m => m.Pedido.ClienteId, new SelectList(Model.ListaClientes, "Id", "Nome"),
+                     null, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>Produto Comprado</label>
+                    @Html.DropDownListFor(m => m.Pedido.ProdutoId, new SelectList(Model.ListaProdutos, "Id","Nome"),
+                     null,new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>Nome da transportadora</label>
+                    @Html.DropDownListFor(m => m.Pedido.TransportadoraId, new SelectList(Model.ListaTransportadores, "Id", "Nome"),
+                     null, new { @class = "form-control" })
+                </div>
+
+            }
+        </div>
+
+    </div>
+    <div class="panel-footer">
+        <button form="editaPedido" type="submit" class="btn btn-info"><i aria-hidden="true"></i>&nbsp;Salvar</button>
+        <a class="btn btn-info" onclick="history.go(-1); return false;" href="#"><i aria-hidden="true"></i>&nbsp;Voltar</a>
+    </div>
+
+
+
+
+</div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

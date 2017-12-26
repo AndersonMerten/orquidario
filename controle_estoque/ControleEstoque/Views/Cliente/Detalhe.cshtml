@@ -1,0 +1,52 @@
+﻿@model ControleEstoque.Models.Produto
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <br />
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>@Model.Nome</h4>
+            </div>
+
+            <div class="panel-body">
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <img src=@Model.Foto width="100%"></img>
+                </div>
+                <div class="text-left detalhes col-lg-6 col-md-6 col-sm-6">
+                    <h4><b>Detalhes do produto</b></h4>
+                    <div><b>Nome:</b> @Model.Nome</div>
+                    <div><b>Descrição:</b> @Model.Descricao</div>
+                    <div><b>Valor:</b> R$@Model.Preco</div>
+                    <div><b>Estoque:</b> @Model.Estoque</div>
+
+
+
+                </div>
+            </div>
+            <div class="panel-footer">
+                @using (Html.BeginForm("Delete", "Produto", new { Model.Id }))
+                {
+                    @Html.ActionLink(
+                     linkText: " Editar Produto",
+                     actionName: "Edit",
+                     routeValues: new { Model.Id }, // or to pass some value -> routeValues: new { id = 1 },
+                     htmlAttributes: new { @class = "btn btn-info " }
+                     );
+
+                    <button type="submit" class="btn btn-danger">Deletar Produto</button>
+
+                    <a style="float:right" class="btn btn-info" onclick="history.go(-1); return false;" href="#"><i aria-hidden="true"></i>&nbsp;Voltar</a>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

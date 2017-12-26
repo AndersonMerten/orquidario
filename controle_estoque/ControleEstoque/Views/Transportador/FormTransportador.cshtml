@@ -1,0 +1,69 @@
+﻿@model ControleEstoque.ViewModels.TransportadorFormViewModel
+@{
+      ViewBag.Title = Model.Title;
+      Layout = "~/Views/Shared/_Layout.cshtml";
+      var classeHidden = "";
+}
+<div class="panel panel-info">
+    @if (Model.Transportador.Nome == null)
+    {
+        classeHidden = "hidden";
+        <div class="panel-heading">@ViewBag.Title</div>
+    }
+    else
+    {
+        <div class="panel-heading">Editando transportador @Model.Transportador.Nome</div>
+    }
+    <div class="panel-body">
+        <div class="col-lg-2 teste @classeHidden">
+            <img src=@Model.Transportador.Logo border=3 height=100% width=100%></img>
+        </div>
+
+        <div class="col-lg-6 teste">
+            @using (Html.BeginForm("Save", "Transportador", FormMethod.Post, new { id = "editaTransportador" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Transportador.Id)
+                <div class="form-group hidden">
+
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Transportador.Nome)
+                    @Html.TextBoxFor(m => m.Transportador.Nome, new { @class = "form-control" , @placeholder="Nome da Transportadora" })
+                    @Html.ValidationMessageFor(m => m.Transportador.Nome)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Transportador.Fone)
+                    @Html.TextBoxFor(m => m.Transportador.Fone, new { @class = "form-control", @type = "Number", @placeholder="Digite o telefone" })
+                    @Html.ValidationMessageFor(m => m.Transportador.Fone)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Transportador.RegioesAtendidas)
+                    @Html.TextBoxFor(m => m.Transportador.RegioesAtendidas, new { @class = "form-control", @placeholder = "Digite as regiões atendias" })
+                    @Html.ValidationMessageFor(m => m.Transportador.RegioesAtendidas)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Transportador.Logo)
+                    @Html.TextBoxFor(m => m.Transportador.Logo, new { @class = "form-control", @type = "text", @placeholder = "Cole o link do logo da empresa" })
+                    @Html.ValidationMessageFor(m => m.Transportador.Logo)
+                </div>
+            }
+            </div>
+        </div>
+            <div class="panel-footer">
+                <button form="editaTransportador" type="submit" class="btn btn-info"><i aria-hidden="true"></i>&nbsp;Salvar</button>
+                <a class="btn btn-info" onclick="history.go(-1); return false;" href="#"><i aria-hidden="true"></i>&nbsp;Voltar</a>
+            </div>
+          
+
+
+
+        </div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
