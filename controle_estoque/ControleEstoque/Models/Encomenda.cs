@@ -19,7 +19,7 @@ namespace ControleEstoque.Models
 
             [Required(ErrorMessage = "Digite o contato de quem encomendou o produto!")]
             public string  Contato { get; set; }
-            
+            public float Valor { get; set; }
             public string Foto { get; set; }
       }
 }

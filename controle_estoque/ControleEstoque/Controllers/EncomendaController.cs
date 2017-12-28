@@ -64,6 +64,7 @@ namespace ControleEstoque.Controllers
                         encomendaInDb.Id = encomenda.Id;
                         encomendaInDb.Contato = encomenda.Contato;
                         encomendaInDb.Foto = encomenda.Foto;
+                        encomendaInDb.Valor = encomenda.Valor;
                   }
 
                   // faz a persistência

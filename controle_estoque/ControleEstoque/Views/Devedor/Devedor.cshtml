@@ -1,0 +1,67 @@
+﻿@model List<ControleEstoque.Models.Devedor>
+
+@{
+    ViewBag.Title = "Devedor";
+}
+@if(!Model.Any()){
+    <p> Não temos devedores cadastrados ainda! </p>
+    <a href=@Url.Action("New", "Devedor") class="btn btn-info pull-lefts">
+        <i></i>&nbsp;Novo Devedor
+    </a>
+}
+else
+{
+    <table class="table table-hover"> 
+        <h1>Devedores</h1>
+        <header>
+            <h3>
+                <a href=@Url.Action("New", "Devedor") class="btn btn-info pull-lefts">
+                    <i></i>&nbsp;Novo Devedor
+                </a>
+            </h3>
+        </header>
+        <thead> <tr><th>Nome</th><th>Valor devido</th><th>Contato</th><th>Observações</th><th>Editar</th><th>Deletar</th></tr></thead>
+        <tbody>
+
+            @foreach (var devedor in Model)
+            {
+                <tr>                  
+                   
+                    <td>
+                        @Html.ActionLink(devedor.Cliente, "Detalhe",
+                        new { devedor.Id },
+                        new {@class = "link"})
+                    </td>
+                    <td>
+                        @devedor.ValorDevido
+                    </td>
+                    <td>
+                        @devedor.Contato
+                    </td>
+                    <td>
+                        @devedor.Observacoes
+                    </td>
+                    <td>
+                       @Html.ActionLink(
+                    linkText: " Editar Devedor",
+                    actionName: "Edit",
+                    routeValues: new { devedor.Id }, // or to pass some value -> routeValues: new { id = 1 },
+                    htmlAttributes: new { @class = "btn btn-info " }
+                    )
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Devedor", new { devedor.Id })) {
+                       
+                            <button type="submit" class="btn btn-danger">Deletar Devedor</button>
+ 
+                        }
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+

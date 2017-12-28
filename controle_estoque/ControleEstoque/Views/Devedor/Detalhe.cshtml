@@ -1,7 +1,4 @@
-﻿
-
-
-@model ControleEstoque.Models.Venda
+﻿@model ControleEstoque.Models.Devedor
 <!DOCTYPE html>
 
 <html>
@@ -14,28 +11,33 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>@Model.Id</h4>
+                <h4>Cliente devedor: @Model.Cliente</h4>
             </div>
 
             <div class="panel-body">
+
                 <div class="text-left detalhes col-lg-6 col-md-6 col-sm-6">
-                    <h4><b>Detalhes da venda</b></h4>
-                    <div><b>Id:</b> @Model.Id</div>
-                    <div><b>Valor:</b> @Model.Valor</div>
-                    <div><b>Data:</b> @Model.Data</div>
+                    <h4><b>Detalhes do devedor</b></h4>
+                    <div><b>Nome:</b> @Model.Cliente</div>
+                    <div><b>Valor devido:</b> @Model.ValorDevido</div>
+                    <div><b>Contato:</b> R$@Model.Contato</div>
+                    <div><b>Observações:</b> @Model.Observacoes</div>
+
+
+
                 </div>
             </div>
             <div class="panel-footer">
-                @using (Html.BeginForm("Delete", "Venda", new { Model.Id }))
+                @using (Html.BeginForm("Delete", "Devedor", new { Model.Id }))
                 {
                     @Html.ActionLink(
-                     linkText: " Editar Venda",
+                     linkText: " Editar Devedor",
                      actionName: "Edit",
                      routeValues: new { Model.Id }, // or to pass some value -> routeValues: new { id = 1 },
                      htmlAttributes: new { @class = "btn btn-info " }
                      );
 
-                    <button type="submit" class="btn btn-danger">Deletar Venda</button>
+                    <button type="submit" class="btn btn-danger">Deletar Produto</button>
 
                     <a style="float:right" class="btn btn-info" onclick="history.go(-1); return false;" href="#"><i aria-hidden="true"></i>&nbsp;Voltar</a>
 

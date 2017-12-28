@@ -1,0 +1,77 @@
+﻿@model ControleEstoque.ViewModels.EncomendaFormViewModel
+@{
+      ViewBag.Title = Model.Title;
+      Layout = "~/Views/Shared/_Layout.cshtml";
+      var classeHidden = "";
+}
+<div class="panel panel-info">
+    @if (Model.Encomenda.Id == 0)
+    {
+        classeHidden = "hidden";
+        <div class="panel-heading">@ViewBag.Title</div>
+    }
+    else
+    {
+        <div class="panel-heading">Editando encomenda @Model.Encomenda.Id</div>
+    }
+    <div class="panel-body">
+        <div class="col-lg-2 teste @classeHidden">
+            <img src=@Model.Encomenda.Foto border=3 height=100% width=100%></img>
+        </div>
+
+        <div class="col-lg-6 teste">
+            @using (Html.BeginForm("Save", "Encomenda", FormMethod.Post, new { id = "editaUser" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Encomenda.Id)
+                <div class="form-group hidden">
+                    @Html.LabelFor(m => m.Encomenda.Id)
+                    @Html.TextBoxFor(m => m.Encomenda.Id, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Encomenda.Cliente)
+                    @Html.TextBoxFor(m => m.Encomenda.Cliente, new { @class = "form-control" , @placeholder="Nome do cliente" })
+                    @Html.ValidationMessageFor(m => m.Encomenda.Cliente)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Encomenda.Produto)
+                    @Html.TextBoxFor(m => m.Encomenda.Produto, new { @class = "form-control",@placeholder="Produtos encomendados" })
+                    @Html.ValidationMessageFor(m => m.Encomenda.Produto)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Encomenda.Contato)
+                    @Html.TextBoxFor(m => m.Encomenda.Contato, new { @class = "form-control" , @placeholder="Informações para contato com o cliente" })
+                    @Html.ValidationMessageFor(m => m.Encomenda.Contato)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Encomenda.Valor)
+                    @Html.TextBoxFor(m => m.Encomenda.Valor, new { @class = "form-control", @type= "number",  @placeholder = "Informações para contato com o cliente" })
+                    @Html.ValidationMessageFor(m => m.Encomenda.Valor)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Encomenda.Foto)
+                    @Html.TextBoxFor(m => m.Encomenda.Foto, new { @class = "form-control", @type = "text", @placeholder = "Cole o link da imagem" })
+                    @Html.ValidationMessageFor(m => m.Encomenda.Foto)
+                </div>
+            }
+            </div>
+         
+        </div>
+            <div class="panel-footer">
+                <button form="editaUser" type="submit" class="btn btn-info"><i aria-hidden="true"></i>&nbsp;Salvar</button>
+                <a class="btn btn-info" onclick="history.go(-1); return false;" href="#"><i aria-hidden="true"></i>&nbsp;Voltar</a>
+            </div>
+          
+
+
+
+        </div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

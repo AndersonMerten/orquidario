@@ -1,0 +1,72 @@
+﻿@model List<ControleEstoque.Models.Encomenda>
+
+@{
+    ViewBag.Title = "Encomenda";
+}
+@if(!Model.Any()){
+    <p> Não temos encomendas cadastrados ainda! </p>
+    <a href=@Url.Action("New", "Encomenda") class="btn btn-info pull-lefts">
+        <i></i>&nbsp;Novo Encomenda
+    </a>
+}
+else
+{
+    <table class="table table-hover"> 
+        <h1>Encomendas</h1>
+        <header>
+            <h3>
+                <a href=@Url.Action("New", "Encomenda") class="btn btn-info pull-lefts">
+                    <i></i>&nbsp;Nova Encomenda
+                </a>
+            </h3>
+        </header>
+        <thead> <tr><th>Imagem</th><th>Produto encomendado</th><th>Cliente</th><th>Valor</th><th>Contato</th><th>Editar</th><th>Deletar</th></tr></thead>
+        <tbody>
+
+            @foreach (var encomenda in Model)
+            {
+                <tr>
+                    <td>
+                        <img src=@encomenda.Foto alt="" border=3 height=80px width=80px></img>
+                       
+                    </td>
+                   
+                    <td>
+                        @Html.ActionLink(encomenda.Produto, "Detalhe",
+                        new { encomenda.Id },
+                        new {@class = "link"})
+                    </td>
+                    <td>
+                        @encomenda.Cliente
+                    </td>
+                    <td>
+                        @encomenda.Valor
+                    </td>
+                    <td>
+                        @encomenda.Contato
+                    </td>
+                   
+                    <td>
+                       @Html.ActionLink(
+                    linkText: " Editar Encomenda",
+                    actionName: "Edit",
+                    routeValues: new { encomenda.Id }, // or to pass some value -> routeValues: new { id = 1 },
+                    htmlAttributes: new { @class = "btn btn-info " }
+                    )
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Encomenda", new { encomenda.Id })) {
+                       
+                            <button type="submit" class="btn btn-danger">Deletar Encomenda</button>
+ 
+                        }
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+

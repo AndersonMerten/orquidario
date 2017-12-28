@@ -60,6 +60,7 @@ namespace ControleEstoque.Controllers
                         devedorInDb.Cliente = devedor.Cliente;
                         devedorInDb.Id = devedor.Id;
                         devedorInDb.Observacoes = devedor.Observacoes;
+                        devedorInDb.Contato = devedor.Contato;
                   }
 
                   // faz a persistência

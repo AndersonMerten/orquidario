@@ -34,6 +34,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <IncludeIisSettings>true</IncludeIisSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -239,6 +241,14 @@
     <Compile Include="Migrations\201712281210211_update-vendas.Designer.cs">
       <DependentUpon>201712281210211_update-vendas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712281717029_update-Devedor.cs" />
+    <Compile Include="Migrations\201712281717029_update-Devedor.Designer.cs">
+      <DependentUpon>201712281717029_update-Devedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712281734381_update-Encomenda.cs" />
+    <Compile Include="Migrations\201712281734381_update-Encomenda.Designer.cs">
+      <DependentUpon>201712281734381_update-Encomenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs" />
@@ -273,6 +283,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
@@ -322,7 +333,6 @@
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -346,11 +356,15 @@
     <Content Include="Views\Venda\Detalhe.cshtml" />
     <Content Include="Views\Venda\FormVenda.cshtml" />
     <Content Include="Views\Venda\Venda.cshtml" />
+    <Content Include="Views\Devedor\Devedor.cshtml" />
+    <Content Include="Views\Devedor\Detalhe.cshtml" />
+    <Content Include="Views\Devedor\FormDevedor.cshtml" />
+    <Content Include="Views\Encomenda\Encomenda.cshtml" />
+    <Content Include="Views\Encomenda\Detalhe.cshtml" />
+    <Content Include="Views\Encomenda\FormEncomenda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Devedor\" />
-    <Folder Include="Views\Encomenda\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -388,6 +402,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712281210211_update-vendas.resx">
       <DependentUpon>201712281210211_update-vendas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281717029_update-Devedor.resx">
+      <DependentUpon>201712281717029_update-Devedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281734381_update-Encomenda.resx">
+      <DependentUpon>201712281734381_update-Encomenda.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

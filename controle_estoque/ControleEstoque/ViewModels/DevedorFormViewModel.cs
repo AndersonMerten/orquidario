@@ -14,9 +14,9 @@ namespace ControleEstoque.ViewModels
                   get
                   {
                         if (this.Devedor != null && this.Devedor.Id != 0)
-                              return "Edita Cliente";
+                              return "Edita Devedor";
 
-                        return "Novo Cliente";
+                        return "Novo Devedor";
                   }
             }
 

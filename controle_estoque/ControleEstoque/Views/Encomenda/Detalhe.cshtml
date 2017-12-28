@@ -1,7 +1,4 @@
-﻿
-
-
-@model ControleEstoque.Models.Venda
+﻿@model ControleEstoque.Models.Encomenda
 <!DOCTYPE html>
 
 <html>
@@ -14,28 +11,38 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>@Model.Id</h4>
+                <h4>@Model.Produto</h4>
             </div>
 
             <div class="panel-body">
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <img src=@Model.Foto width="100%"></img>
+                </div>
                 <div class="text-left detalhes col-lg-6 col-md-6 col-sm-6">
-                    <h4><b>Detalhes da venda</b></h4>
-                    <div><b>Id:</b> @Model.Id</div>
-                    <div><b>Valor:</b> @Model.Valor</div>
-                    <div><b>Data:</b> @Model.Data</div>
+                    <h4><b>Detalhes da encomenda</b></h4>
+                    <div><b>Cliente que encomendou:</b> @Model.Cliente</div>
+                    <div><b>Produto(s):</b> @Model.Produto</div>
+                    <div><b>Valor:</b> R$@Model.Valor</div>
+                    <div><b>Contato:</b> R$@Model.Contato</div>
+                    
+
+                    
+
+
+
                 </div>
             </div>
             <div class="panel-footer">
-                @using (Html.BeginForm("Delete", "Venda", new { Model.Id }))
+                @using (Html.BeginForm("Delete", "Encomenda", new { Model.Id }))
                 {
                     @Html.ActionLink(
-                     linkText: " Editar Venda",
+                     linkText: " Editar Encomenda",
                      actionName: "Edit",
                      routeValues: new { Model.Id }, // or to pass some value -> routeValues: new { id = 1 },
                      htmlAttributes: new { @class = "btn btn-info " }
                      );
 
-                    <button type="submit" class="btn btn-danger">Deletar Venda</button>
+                    <button type="submit" class="btn btn-danger">Deletar Encomenda</button>
 
                     <a style="float:right" class="btn btn-info" onclick="history.go(-1); return false;" href="#"><i aria-hidden="true"></i>&nbsp;Voltar</a>
 

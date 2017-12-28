@@ -1,0 +1,68 @@
+﻿@model ControleEstoque.ViewModels.DevedorFormViewModel
+@{
+      ViewBag.Title = Model.Title;
+      Layout = "~/Views/Shared/_Layout.cshtml";
+      var classeHidden = "";
+}
+<div class="panel panel-info">
+    @if (Model.Devedor.Id == 0)
+    {
+        classeHidden = "hidden";
+        <div class="panel-heading">@ViewBag.Title</div>
+    }
+    else
+    {
+        <div class="panel-heading">Editando devedor devedor: @Model.Devedor.Cliente</div>
+    }
+    <div class="panel-body">
+       
+        <div class="col-lg-6 teste">
+            @using (Html.BeginForm("Save", "Devedor", FormMethod.Post, new { id = "editaUser" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Devedor.Id)
+                <div class="form-group hidden">
+                    @Html.LabelFor(m => m.Devedor.Id)
+                    @Html.TextBoxFor(m => m.Devedor.Id, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Devedor.Cliente)
+                    @Html.TextBoxFor(m => m.Devedor.Cliente, new { @class = "form-control" , @placeholder="Nome do cliente devedor" })
+                    @Html.ValidationMessageFor(m => m.Devedor.Cliente)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Devedor.ValorDevido)
+                    @Html.TextBoxFor(m => m.Devedor.ValorDevido, new { @class = "form-control", @type = "Number", @placeholder="Valor devido pelo cliente" })
+                    @Html.ValidationMessageFor(m => m.Devedor.ValorDevido)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Devedor.Contato)
+                    @Html.TextBoxFor(m => m.Devedor.Contato, new { @class = "form-control", @placeholder="Informações de contato do cliente" })
+                    @Html.ValidationMessageFor(m => m.Devedor.Contato)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Devedor.Observacoes)
+                    @Html.TextBoxFor(m => m.Devedor.Observacoes, new { @class = "form-control", @placeholder="Observações adicionais"})
+                    @Html.ValidationMessageFor(m => m.Devedor.Observacoes)
+                </div>
+              
+            }
+            </div>
+         
+        </div>
+            <div class="panel-footer">
+                <button form="editaUser" type="submit" class="btn btn-info"><i aria-hidden="true"></i>&nbsp;Salvar</button>
+                <a class="btn btn-info" onclick="history.go(-1); return false;" href="#"><i aria-hidden="true"></i>&nbsp;Voltar</a>
+            </div>
+          
+
+
+
+        </div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
