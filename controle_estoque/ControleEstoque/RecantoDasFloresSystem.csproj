@@ -200,6 +200,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\DevedorController.cs" />
+    <Compile Include="Controllers\EncomendaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
@@ -229,11 +231,20 @@
     <Compile Include="Migrations\201712052329568_update-pedido3.Designer.cs">
       <DependentUpon>201712052329568_update-pedido3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712261603127_orquidario-initial.cs" />
+    <Compile Include="Migrations\201712261603127_orquidario-initial.Designer.cs">
+      <DependentUpon>201712261603127_orquidario-initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712281210211_update-vendas.cs" />
+    <Compile Include="Migrations\201712281210211_update-vendas.Designer.cs">
+      <DependentUpon>201712281210211_update-vendas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Devedor.cs" />
     <Compile Include="Models\Encomenda.cs" />
+    <Compile Include="Models\FormaPagamento.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pedido.cs" />
@@ -243,6 +254,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ClienteFormViewModel.cs" />
+    <Compile Include="ViewModels\DevedorFormViewModel.cs" />
+    <Compile Include="ViewModels\EncomendaFormViewModel.cs" />
     <Compile Include="ViewModels\PedidoFormViewModel.cs" />
     <Compile Include="ViewModels\ProdutoFormViewModel.cs" />
     <Compile Include="ViewModels\TransportadorFormViewModel.cs" />
@@ -330,10 +343,14 @@
     <Content Include="Views\Produto\Detalhe.cshtml" />
     <Content Include="Views\Pedido\FormPedido.cshtml" />
     <Content Include="Views\Pedido\Detalhe.cshtml" />
+    <Content Include="Views\Venda\Detalhe.cshtml" />
+    <Content Include="Views\Venda\FormVenda.cshtml" />
+    <Content Include="Views\Venda\Venda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Venda\" />
+    <Folder Include="Views\Devedor\" />
+    <Folder Include="Views\Encomenda\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -365,6 +382,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712052329568_update-pedido3.resx">
       <DependentUpon>201712052329568_update-pedido3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712261603127_orquidario-initial.resx">
+      <DependentUpon>201712261603127_orquidario-initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281210211_update-vendas.resx">
+      <DependentUpon>201712281210211_update-vendas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

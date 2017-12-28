@@ -1,0 +1,55 @@
+﻿@model ControleEstoque.ViewModels.VendaFormViewModel
+@{
+      ViewBag.Title = Model.Title;
+      Layout = "~/Views/Shared/_Layout.cshtml";
+      var classeHidden = "";
+}
+<div class="panel panel-info">
+    @if (Model.Venda.Id == 0)
+    {
+        classeHidden = "hidden";
+        <div class="panel-heading">@ViewBag.Title</div>
+    }
+    else
+    {
+        <div class="panel-heading">Editando venda @Model.Venda.Id</div>
+    }
+    <div class="panel-body">
+        <div class="col-lg-6 teste">
+            @using (Html.BeginForm("Save", "Venda", FormMethod.Post, new { id = "editaVenda" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.Venda.Id)
+                <div class="form-group hidden">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Venda.Data)
+                        @Html.TextBoxFor(m => m.Venda.Data, new { @class = "form-control", @placeholder = "data da venda", @value = Model.Venda.Data })
+                        @Html.ValidationMessageFor(m => m.Venda.Data)
+                    </div>
+                </div>
+
+               
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Venda.Valor)
+                    @Html.TextBoxFor(m => m.Venda.Valor, new { @class = "form-control", @type = "Number", @placeholder="Digite o valor da venda" })
+                    @Html.ValidationMessageFor(m => m.Venda.Valor)
+                </div>
+
+
+            }
+            </div>
+        </div>
+            <div class="panel-footer">
+                <button form="editaVenda" type="submit" class="btn btn-info"><i aria-hidden="true"></i>&nbsp;Salvar</button>
+                <a class="btn btn-info" onclick="history.go(-1); return false;" href="#"><i aria-hidden="true"></i>&nbsp;Voltar</a>
+            </div>
+          
+
+
+
+        </div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

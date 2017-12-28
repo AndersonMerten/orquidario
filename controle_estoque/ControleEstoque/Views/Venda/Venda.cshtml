@@ -1,0 +1,64 @@
+﻿@model List<ControleEstoque.Models.Venda>
+
+@{
+      ViewBag.Title = "Venda";
+}
+@if (!Model.Any())
+{
+    <p> Não temos Venda cadastrado ainda! </p>
+    <a href=@Url.Action("New", "Venda") class="btn btn-info pull-lefts">
+        <i></i>&nbsp;Nova Venda
+    </a>
+
+}
+else
+{
+    <table class="table table-hover">
+        <h1>Vendas</h1>
+        <header>
+            <h3>
+                <a href=@Url.Action("New", "Venda") class="btn btn-info pull-lefts">
+                    <i></i>&nbsp;Nova Venda
+                </a>
+            </h3>
+        </header>
+        <thead> <tr><th>Id</th><th>Valor</th><th>Data</th><th>Editar</th><th>Deletar</th></tr></thead>
+        <tbody>
+
+            @foreach (var Venda in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.ActionLink(Venda.Id.ToString() , "Detalhe",
+                        new { Venda.Id },
+                        new { @class = "link" })
+                    </td>
+                    <td>
+                        @Venda.Valor
+                    </td>
+                   <td>
+                       @Venda.Data.Day/@Venda.Data.Month/@Venda.Data.Year
+                   </td>
+                    <td>
+                        @Html.ActionLink(
+                    linkText: " Editar Venda",
+                    actionName: "Edit",
+                    routeValues: new { Venda.Id }, // or to pass some value -> routeValues: new { id = 1 },
+                    htmlAttributes: new { @class = "btn btn-info " }
+                    )
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Delete", "Venda", new { Venda.Id }))
+                        {
+
+                            <button type="submit" class="btn btn-danger">Deletar Venda</button>
+
+                        }
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}

@@ -17,6 +17,6 @@ namespace ControleEstoque.Models
 
             [Required]
             [DataType(DataType.Date)]
-            public string Data { get; set; }
+            public DateTime Data { get; set; }
       }
 }

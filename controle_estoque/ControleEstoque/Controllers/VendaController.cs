@@ -94,7 +94,13 @@ namespace ControleEstoque.Controllers
                   var vendaViewModel = new VendaFormViewModel
                   {
                         Venda = new Venda()
+                 
                   };
+                  DateTime date1 = new DateTime();
+                  date1 = DateTime.Now;
+                  // Get date-only portion of date, without its time.
+                  DateTime dateOnly = date1.Date;
+                  vendaViewModel.Venda.Data = date1;
 
                   return View("FormVenda", vendaViewModel);
 

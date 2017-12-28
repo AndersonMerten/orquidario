@@ -25,6 +25,8 @@ namespace ControleEstoque.Models
         public DbSet<Transportador> Transportadoras { get; set; }
         public DbSet<Pedido>Pedidos { get; set; }
         public DbSet<Venda>Vendas { get; set; }
+        public DbSet<Encomenda> Encomendas { get; set; }
+        public DbSet<Devedor> Devedores { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
