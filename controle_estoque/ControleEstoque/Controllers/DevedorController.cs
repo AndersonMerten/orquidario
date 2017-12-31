@@ -25,7 +25,8 @@ namespace ControleEstoque.Controllers
 
             public ActionResult Index()
             {
-                  return View();
+                 var devedores = _context.Devedores.ToList();
+                  return View(devedores);
             }
 
             public ActionResult Detalhe(int id)
@@ -61,6 +62,7 @@ namespace ControleEstoque.Controllers
                         devedorInDb.Id = devedor.Id;
                         devedorInDb.Observacoes = devedor.Observacoes;
                         devedorInDb.Contato = devedor.Contato;
+                        devedorInDb.ValorDevido = devedor.ValorDevido;
                   }
 
                   // faz a persistência

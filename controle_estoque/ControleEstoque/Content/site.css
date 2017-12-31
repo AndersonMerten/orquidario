@@ -44,3 +44,7 @@ footer {
     background-color: black;
     color: gray;
 }
+
+.panel-margim-top{
+    margin-top: 10px;
+}

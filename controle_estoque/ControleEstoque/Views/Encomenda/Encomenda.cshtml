@@ -11,15 +11,31 @@
 }
 else
 {
+
+    <div class="panel panel-margim-top panel-default">
+        <div class="panel-heading">
+            <h2>Encomendas</h2>
+        </div>
+        <div class="panel-body">
+            @{
+                  int count = 0;
+                  double qtdDevida = 0;
+                  foreach (var devedor in Model)
+                  {
+                      count++;
+                  
+                  }
+            }
+            Atualmente o orquidário possui @count encomendas cadastradas!
+        </div>
+        <div class="panel-footer">
+            <a href=@Url.Action("New", "Encomenda") class="btn btn-info pull-lefts">
+                <i></i>&nbsp;Nova Encomenda
+            </a>
+        </div>
+    </div>
     <table class="table table-hover"> 
-        <h1>Encomendas</h1>
-        <header>
-            <h3>
-                <a href=@Url.Action("New", "Encomenda") class="btn btn-info pull-lefts">
-                    <i></i>&nbsp;Nova Encomenda
-                </a>
-            </h3>
-        </header>
+
         <thead> <tr><th>Imagem</th><th>Produto encomendado</th><th>Cliente</th><th>Valor</th><th>Contato</th><th>Editar</th><th>Deletar</th></tr></thead>
         <tbody>
 

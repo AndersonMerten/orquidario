@@ -11,13 +11,34 @@
 }
 else
 {
+
+    <div class="panel panel-margim-top panel-default">
+        <div class="panel-heading">
+            <h2>Devedores</h2>
+        </div>
+        <div class="panel-body">
+            @{ 
+                  int count = 0;
+                  double qtdDevida = 0;
+                  foreach( var devedor in Model)
+                  {
+                        count++;
+                        qtdDevida += devedor.ValorDevido;
+                  }
+            }
+            Atualmente o orquidario possui @count devedores, e a quantia total devida é de R$@Math.Round(qtdDevida)!
+        </div>
+        <div class="panel-footer">
+            <a href=@Url.Action("New", "Devedor") class="btn btn-info pull-lefts">
+                <i></i>&nbsp;Novo Devedor
+            </a>
+        </div>
+    </div>
     <table class="table table-hover"> 
-        <h1>Devedores</h1>
+        
         <header>
             <h3>
-                <a href=@Url.Action("New", "Devedor") class="btn btn-info pull-lefts">
-                    <i></i>&nbsp;Novo Devedor
-                </a>
+               
             </h3>
         </header>
         <thead> <tr><th>Nome</th><th>Valor devido</th><th>Contato</th><th>Observações</th><th>Editar</th><th>Deletar</th></tr></thead>
